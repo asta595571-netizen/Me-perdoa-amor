@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Você me perdoa amorzinho?</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ffb6c1, #ffe6f2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        h1 {
+            color: #d63384;
+            font-size: 34px;
+            z-index: 2;
+        }
+
+        .botoes {
+            margin-top: 20px;
+            z-index: 2;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        #sim {
+            background-color: #28a745;
+            color: white;
+        }
+
+        #nao {
+            background-color: #dc3545;
+            color: white;
+            position: absolute;
+        }
+
+        .coracao {
+            position: absolute;
+            color: red;
+            font-size: 20px;
+            animation: cair 5s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes cair {
+            0% { transform: translateY(-10vh) rotate(0deg); }
+            100% { transform: translateY(110vh) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <h1 id="titulo">Você me perdoa amorzinho? 💕</h1>
+
+    <div class="botoes" id="botoes">
+        <button id="sim">Sim</button>
+        <button id="nao">Não</button>
+    </div>
+
+    <script>
+        const botaoNao = document.getElementById("nao");
+        const botaoSim = document.getElementById("sim");
+
+        // BOTÃO "NÃO" FUGINDO
+        botaoNao.addEventListener("mouseover", () => {
+            const largura = window.innerWidth - 100;
+            const altura = window.innerHeight - 100;
+
+            const x = Math.random() * largura;
+            const y = Math.random() * altura;
+
+            botaoNao.style.left = x + "px";
+            botaoNao.style.top = y + "px";
+        });
+
+        // BOTÃO "SIM" ABRE O LINK
+        botaoSim.addEventListener("click", () => {
+            window.location.href = "https://amorzinho-fofo.preview.emergentagent.com/";
+        });
+
+        // CORAÇÕES CAINDO
+        function criarCoracao() {
+            const coracao = document.createElement("div");
+            coracao.classList.add("coracao");
+            coracao.innerHTML = "❤️";
+            coracao.style.left = Math.random() * 100 + "vw";
+            coracao.style.fontSize = (20 + Math.random() * 30) + "px";
+            coracao.style.animationDuration = (3 + Math.random() * 5) + "s";
+
+            document.body.appendChild(coracao);
+
+            setTimeout(() => coracao.remove(), 8000);
+        }
+
+        setInterval(criarCoracao, 300);
+    </script>
+
+</body>
+</html>
